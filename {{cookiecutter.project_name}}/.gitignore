@@ -138,3 +138,5 @@ dmypy.json
 cython_debug/
 
 {{cookiecutter.package_name}}/version.py
+
+docs/
