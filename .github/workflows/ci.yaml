@@ -1,0 +1,30 @@
+on: [push, pull_request]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  test:
+    env:
+      pkgdir: ./mypackage
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.9']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install cookiecutter
+      - run: cookiecutter --noinput .
+      - run: tree $pkgdir
+      - working-directory: ${{env.pkgdir}}
+        run: make install-dev
+      - working-directory: ${{env.pkgdir}}
+        run: make lint
+      - working-directory: ${{env.pkgdir}}
+        run: make test
