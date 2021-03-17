@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip install cookiecutter
-      - run: cookiecutter --noinput .
+      - run: cookiecutter --no-input .
       - run: tree $pkgdir
       - working-directory: ${{env.pkgdir}}
         run: make install-dev
