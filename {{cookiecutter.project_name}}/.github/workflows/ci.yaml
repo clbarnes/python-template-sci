@@ -1,3 +1,4 @@
+{% raw -%}
 on: [push, pull_request]
 
 defaults:
@@ -51,3 +52,4 @@ jobs:
         with:
           user: __token__
           password: ${{ secrets.pypi_password }}
+{%- endraw %}
