@@ -17,8 +17,8 @@ install:
 
 .PHONY install-dev
 install-dev:
-	pip install -r requirements.txt
-	pip install -e .
+	pip install -r requirements.txt \
+	&& pip install -e .
 
 .PHONY clean-docs
 clean-docs:
@@ -26,4 +26,5 @@ clean-docs:
 
 .PHONY docs
 docs: clean-docs
-	mkdir docs && pdoc --html --output-dir docs {{cookiecutter.package_name}}
+	mkdir docs \
+	&& pdoc --html --output-dir docs {{cookiecutter.package_name}}
