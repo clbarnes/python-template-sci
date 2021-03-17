@@ -1,30 +1,30 @@
-.PHONY fmt
+.PHONY: fmt
 fmt:
 	black .
 
-.PHONY lint
+.PHONY: lint
 lint:
 	black --check .
 	flake8 .
 
-.PHONY test
+.PHONY: test
 test:
 	pytest --verbose
 
-.PHONY install
+.PHONY: install
 install:
 	pip install .
 
-.PHONY install-dev
+.PHONY: install-dev
 install-dev:
 	pip install -r requirements.txt \
 	&& pip install -e .
 
-.PHONY clean-docs
+.PHONY: clean-docs
 clean-docs:
 	rm -rf docs
 
-.PHONY docs
+.PHONY: docs
 docs: clean-docs
 	mkdir docs \
 	&& pdoc --html --output-dir docs {{cookiecutter.package_name}}
