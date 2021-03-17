@@ -1,0 +1,10 @@
+# dev
+
+mypy
+flake8
+black
+pytest
+setuptools-scm
+setuptools
+wheel
+pdoc3

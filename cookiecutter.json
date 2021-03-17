@@ -1,0 +1,7 @@
+{
+  "package_name": "mypackage",
+  "project_name": "{{cookiecutter.package_name}}",
+  "url": "https://github.com/clbarnes",
+  "author": "Chris L. Barnes",
+  "description": ""
+}
