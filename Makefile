@@ -8,4 +8,5 @@ test: package
 	cd mypackage \
 	&& make install-dev \
 	&& make lint \
-	&& make test
+	&& make test \
+	&& make docs
