@@ -1,10 +1,11 @@
 # dev
 
-mypy
-flake8
 black
+flake8
+isort
+mypy
+pdoc3
 pytest
 setuptools-scm
 setuptools
 wheel
-pdoc3

@@ -1,11 +1,14 @@
 .PHONY: fmt
 fmt:
-	black .
+	isort . \
+	&& black .
 
 .PHONY: lint
 lint:
 	black --check .
+	isort --check .
 	flake8 .
+	mypy .
 
 .PHONY: test
 test:
@@ -26,5 +29,5 @@ clean-docs:
 
 .PHONY: docs
 docs: clean-docs
-	mkdir docs \
+	mkdir -p docs \
 	&& pdoc --html --output-dir docs {{cookiecutter.package_name}}
