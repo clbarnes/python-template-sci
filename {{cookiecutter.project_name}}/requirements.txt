@@ -6,6 +6,6 @@ isort
 mypy
 pdoc3
 pytest
-setuptools-scm
 setuptools
+setuptools-scm
 wheel
