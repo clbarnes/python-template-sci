@@ -1,5 +1,6 @@
 {% raw -%}
 on: [push, pull_request]
+name: Lint, test, deploy package
 
 defaults:
   run:
