@@ -12,6 +12,7 @@ setup(
     description="{{cookiecutter.description}}",
     long_description=readme,
     long_description_content_type="text/markdown",
+    package_dir={"": "src"},
     packages=find_packages(where="src", include=["{{cookiecutter.package_name}}*"]),
     install_requires=[],
     python_requires=">=3.8, <4.0",
