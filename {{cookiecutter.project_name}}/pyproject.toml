@@ -4,6 +4,9 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
 [tool.setuptools_scm]
 write_to = "src/{{cookiecutter.package_name}}/version.py"
 
+[tool.black]
+extend-exclude = '^/src/{{cookiecutter.package_name}}/version.py'
+
 [tool.isort]
 profile = "black"
 multi_line_output = 3
