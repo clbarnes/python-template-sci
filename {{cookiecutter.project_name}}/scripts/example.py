@@ -6,6 +6,7 @@ import csv
 import logging
 
 from {{cookiecutter.package_name}}.constants import DATA_DIR
+from {{cookiecutter.package_name}}.utils import setup_logging
 
 logger = logging.getLogger()
 
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     # gives you access to information from underlying libraries;
     # and you can leave the log lines there and just change the level
     # if you don't need to see them any more
-    logging.basicConfig(level=logging.DEBUG)
+    setup_logging()
     logger.info("Starting script")
 
     main()
