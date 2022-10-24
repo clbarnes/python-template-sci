@@ -1,12 +1,12 @@
 from pathlib import Path
 
 from setuptools import find_packages, setup
-from extreqs import parse_requirements_files
+from extreqs import parse_requirement_files
 
 with open(Path(__file__).resolve().parent / "README.md") as f:
     readme = f.read()
 
-install_requires, extras_require = parse_requirements_files(
+install_requires, extras_require = parse_requirement_files(
     Path(__file__).resolve().parent / "requirements.txt"
 )
 

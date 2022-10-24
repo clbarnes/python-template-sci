@@ -86,6 +86,10 @@ This template uses [pytest](https://docs.pytest.org/).
 Any tests you've written automatically when you push to GitHub.
 You can run tests locally with `make test` (on unix).
 
+### Continuous Deployment
+
+This repo uses [GitHub Actions](https://docs.github.com/en/actions) to lint and test your code every time you push to GitHub.
+
 ### Versioning
 
 This repo uses [`setuptools-scm`](https://pypi.org/project/setuptools-scm/) so your package version and git version is synchronised.
