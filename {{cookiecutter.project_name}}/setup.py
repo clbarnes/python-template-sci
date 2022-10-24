@@ -1,9 +1,14 @@
 from pathlib import Path
 
 from setuptools import find_packages, setup
+from extreqs import parse_requirements_files
 
 with open(Path(__file__).resolve().parent / "README.md") as f:
     readme = f.read()
+
+install_requires, extras_require = parse_requirements_files(
+    Path(__file__).resolve().parent / "requirements.txt"
+)
 
 setup(
     name="{{cookiecutter.package_name}}",
@@ -17,15 +22,11 @@ setup(
         where="src",
         include=["{{cookiecutter.package_name}}*"]
     ),
-    install_requires=[],
-    python_requires=">=3.8, <4.0",
+    install_requires=install_requires,
+    extras_require=extras_require,
+    python_requires=">=3.9, <4.0",
     classifiers=[
-        "Development Status :: 3 - Alpha",
-        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
     ],
     use_scm_version=True,
     setup_requires=["setuptools_scm"],

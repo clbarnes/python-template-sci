@@ -25,10 +25,6 @@ install-dev:
 	pip install -r requirements.txt \
 	&& pip install -e .
 
-.PHONY: clean-docs
-clean-docs:
-	rm -rf docs
-
 .PHONY: docs
 docs: clean-docs
 	mkdir -p docs \

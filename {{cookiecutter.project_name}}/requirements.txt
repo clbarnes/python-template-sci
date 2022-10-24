@@ -1,10 +1,15 @@
-# dev
+# Requirements should go here, ABOVE the "#extra: dev" line
+
+#extra: dev
 
 black
+extreqs
 flake8
+ipdb
+ipython
 isort
 mypy
-pdoc3
+pur
 pytest
 setuptools
 setuptools-scm
