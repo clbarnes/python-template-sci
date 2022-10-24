@@ -37,3 +37,4 @@ jobs:
           pip install .
         name: Install package
       - run: pytest --verbose
+{% endraw %}
