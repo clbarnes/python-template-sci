@@ -20,7 +20,9 @@ From: python:3.10.8-bullseye
 
 %post
     cd /project
-    pip install --no-cache-dir .
+    pip install -U pip setuptools wheel
+    pip install .
+    pip cache purge
 
     VERSION=$(python -c 'import {{cookiecutter.package_name}} as pkg; print(pkg.__version__)')
     echo "version $VERSION" >> "$APPTAINER_LABELS"
