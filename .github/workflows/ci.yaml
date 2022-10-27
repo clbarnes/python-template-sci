@@ -35,6 +35,8 @@ jobs:
 
   container:
     runs-on: ubuntu-22.04
+    env:
+      pkgdir: ./mypackage
     steps:
       - uses: actions/checkout@v3
       - uses: eWaterCycle/setup-apptainer@v2
@@ -44,4 +46,4 @@ jobs:
       - run: pip install cookiecutter
       - run: cookiecutter --no-input .
       - run: make container
-        working-directory: ./mypackage
+        working-directory: ${{env.pkgdir}}

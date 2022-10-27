@@ -14,6 +14,7 @@ Originally forked from [clbarnes/python-template](https://github.com/clbarnes/py
 
 - Pre-populated data and credentials directories with appropriate gitignores
 - Simple dependency listing using `requirements.txt` and [extreqs](https://pypi.org/project/extreqs/)
+- CI/CD with [GitHub Actions](https://docs.github.com/en/actions)
 - Unit tests with [pytest](https://docs.pytest.org/)
 - Linting with [flake8](https://pypi.org/project/flake8/), formatting with [black](https://pypi.org/project/black/) and [isort](https://pypi.org/project/isort/)
 - Version management with [setuptools-scm](https://pypi.org/project/setuptools-scm/)
