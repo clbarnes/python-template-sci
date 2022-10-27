@@ -23,7 +23,7 @@ install:
 .PHONY: install-dev
 install-dev:
 	pip install -r requirements.txt \
-	&& pip install -e .
+	&& pip install -e ".[dev]"
 
 .PHONY: container
 container:
