@@ -1,0 +1,36 @@
+Bootstrap: docker
+From: python:3.10.8-bullseye
+
+%setup
+    mkdir -p \
+        $SINGULARITY_ROOTFS/project/.git \
+        $SINGULARITY_ROOTFS/project/credentials \
+        $SINGULARITY_ROOTFS/project/data
+
+%files
+    ./src /project/src
+    ./scripts /project/scripts
+    # ./tests /project/tests
+    ./.gitignore /project/.gitignore
+    ./LICENSE /project/LICENSE
+    ./pyproject.toml /project/pyproject.toml
+    ./README.md /project/README.md
+    ./requirements.txt /project/requirements.txt
+    ./setup.py /project/setup.py
+
+%post
+    cd /project
+    pip install --no-cache-dir .
+
+    VERSION=$(python -c 'import {{cookiecutter.package_name}} as pkg; print(pkg.__version__)')
+    echo "version $VAL" >> "$APPTAINER_LABELS"
+
+%labels
+    author {{ cookiecutter.author }}
+    email {{ cookiecutter.email }}
+    url {{ cookiecutter.email }}
+    package {{ cookiecutter.package_name }}
+
+%help
+    {{ cookiecutter.package_name }}
+    {{ cookiecutter.description }}

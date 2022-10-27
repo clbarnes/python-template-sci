@@ -6,5 +6,10 @@ Data are separated into directories for
 
 By default, data files are versioned by git.
 However, if your files are large, and especially if they're not text, they will fill up your repository and make git very slow.
-Such files should be added to the `untracked` subdirectory, where all files are ignored by git (see the `.gitignore` files).
+Such files should be added to the `large` subdirectory, where all files are ignored by git (see the `.gitignore` files).
 Remember that you'll need to document how to acquire large input data if you want your scripts to work anywhere else!
+
+The absolute path to this directory can be read from `{{cookiecutter.package_name}}.constants.DATA_DIR`.
+
+If your data is stored externally, set the `{{ cookiecutter.package_name.upper() }}_DATA` environment variable:
+the python `DATA_DIR` variable above will now point to that instead.

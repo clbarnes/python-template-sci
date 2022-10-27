@@ -28,8 +28,39 @@ If you are developing the package, instead use `pip install --editable ".[dev]"`
 Shared utilities are in [`src/{{cookiecutter.package_name}}/`](./src/{{cookiecutter.package_name}}).
 Scripts using those utilities are in [`scripts/`](./scripts).
 
-Data files should be kept to the [`data/`](./data) directory
+### Data
+
+Data files should be kept to the [`data/`](./data) directory,
+or the path can be set using the `{{ cookiecutter.package_name.upper() }}_DATA` environment variable
 (see [`data/README.md`](./data/README.md) for more details).
+
+### Containerisation
+
+This template comes with a recipe for containerising the entire project using [apptainer](https://apptainer.org/docs/user/main/quick_start.html).
+This means that an entire operating system, python environment, and the files are built into one file,
+which will run on any system where apptainer is installed, in perpetuity.
+The python files are installed in the container at `/project`.
+
+Just run `make container` (requires sudo).
+
+To improve container size and flexibility, the `./data/` directory is not included.
+To improve flexibility and security, the `./credentials/` directory is not included.
+
+You can [(bind) mount](https://apptainer.org/docs/user/main/bind_paths_and_mounts.html) both inside the container at runtime:
+
+```sh
+# find the data path your environment is using, defaulting to the local ./data
+DATA_PATH=${{{ cookiecutter.package_name.upper() }}_DATA:-$(pwd)/data}
+CREDS_PATH=$(pwd)/credentials
+
+# execute the command `/bin/bash` (i.e. get a terminal inside the container)
+# mounting the data directory and credentials you're already using
+# container file (.sif) must already be built
+apptainer exec \
+    --bind $DATA_PATH:/project/data \
+    --bind $CREDS_PATH:/project/credentials \
+    {{ cookiecutter.package_name }}.sif /bin/bash
+```
 
 ## Development
 
@@ -58,6 +89,7 @@ Using [type hints](https://realpython.com/lessons/type-hinting/) will also allow
 
 Passwords, API tokens etc. **MUST NOT** be tracked with git.
 Files in the `credentials/` directory are ignored by git, so this is a good place to keep them.
+The path to this directory can be found in the python variable `{{ cookiecutter.package_name }}.constants.CREDENTIALS_DIR`.
 
 Document what credentials you need for your scripts to function, and what format they need to take,
 so that someone with different credentials can still work with your scripts.
@@ -67,6 +99,9 @@ so that someone with different credentials can still work with your scripts.
 All dependencies should be specified in the requirements file,
 ideally with specific versions listed so that your environment is reproducible.
 [`pur`](https://pypi.org/project/pur/) can be used to update your requirements file to the latest versions.
+
+Any non-python dependencies should be documented,
+and their installation steps should be included in the `%post` section of the Apptainer definition.
 
 ### Linting
 
@@ -83,7 +118,7 @@ Unit tests make sure that small utility functions do what you expect them to.
 They are generally quick to run and can help prove that the building blocks of your pipeline are sound.
 
 This template uses [pytest](https://docs.pytest.org/).
-Any tests you've written automatically when you push to GitHub.
+Any tests you've written run automatically when you push to GitHub.
 You can run tests locally with `make test` (on unix).
 
 ### Continuous Deployment

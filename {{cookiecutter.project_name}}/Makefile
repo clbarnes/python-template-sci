@@ -25,7 +25,6 @@ install-dev:
 	pip install -r requirements.txt \
 	&& pip install -e .
 
-.PHONY: docs
-docs: clean-docs
-	mkdir -p docs \
-	&& pdoc --html --output-dir docs {{cookiecutter.package_name}}
+.PHONY: container
+container:
+	sudo apptainer build --bind $(shell pwd)/.git:/project/.git {{ cookiecutter.package_name }}.sif ./Apptainer
