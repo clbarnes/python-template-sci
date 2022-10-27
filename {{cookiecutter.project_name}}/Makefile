@@ -27,4 +27,4 @@ install-dev:
 
 .PHONY: container
 container:
-	sudo apptainer build --bind $(shell pwd)/.git:/project/.git {{ cookiecutter.package_name }}.sif ./Apptainer
+	sudo apptainer build --bind "$(shell pwd)/.git:/project/.git" {{ cookiecutter.package_name }}.sif ./Apptainer
