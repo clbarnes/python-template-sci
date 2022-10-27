@@ -30,7 +30,7 @@ From: python:3.10.8-bullseye
 %labels
     author {{ cookiecutter.author }}
     email {{ cookiecutter.email }}
-    url {{ cookiecutter.email }}
+    url {{ cookiecutter.url }}
     package {{ cookiecutter.package_name }}
 
 %help
