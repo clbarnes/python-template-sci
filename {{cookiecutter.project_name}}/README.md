@@ -50,7 +50,7 @@ You can [(bind) mount](https://apptainer.org/docs/user/main/bind_paths_and_mount
 
 ```sh
 # find the data path your environment is using, defaulting to the local ./data
-DATA_PATH=${{{ cookiecutter.package_name.upper() }}_DATA:-$(pwd)/data}
+DATA_PATH=${{"{"}}{{ cookiecutter.package_name.upper() }}_DATA:-$(pwd)/data}
 CREDS_PATH=$(pwd)/credentials
 
 # execute the command `/bin/bash` (i.e. get a terminal inside the container)
