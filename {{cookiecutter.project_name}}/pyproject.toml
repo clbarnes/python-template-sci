@@ -13,3 +13,8 @@ multi_line_output = 3
 
 [tool.mypy]
 ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203"]
+exclude = ["venv"]

@@ -5,6 +5,7 @@
 black
 extreqs
 flake8
+flake8-pyproject
 ipdb
 ipython
 isort
