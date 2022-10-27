@@ -36,29 +36,29 @@ or the path can be set using the `{{ cookiecutter.package_name.upper() }}_DATA` 
 
 ### Containerisation
 
-This template comes with a recipe for containerising the entire project using [apptainer](https://apptainer.org/docs/user/main/quick_start.html).
-This means that an entire operating system, python environment, and the files are built into one file,
-which will run on any system where apptainer is installed, in perpetuity.
-The python files are installed in the container at `/project`.
+This project can be containerised comes with [apptainer](https://apptainer.org/docs/user/main/quick_start.html)
+(bundling it with a python environment and full OS),
+so that it can be run on any system with apptainer installed.
 
 Just run `make container` (requires sudo).
 
+The python files are installed in the container at `/project`.
 To improve container size and flexibility, the `./data/` directory is not included.
 To improve flexibility and security, the `./credentials/` directory is not included.
 
-You can [(bind) mount](https://apptainer.org/docs/user/main/bind_paths_and_mounts.html) both inside the container at runtime:
+You can [bind mount](https://apptainer.org/docs/user/main/bind_paths_and_mounts.html) these directories inside the container at runtime:
 
 ```sh
-# find the data path your environment is using, defaulting to the local ./data
+# Find the data path your environment is using, defaulting to the local ./data
 DATA_PATH=${{"{"}}{{ cookiecutter.package_name.upper() }}_DATA:-$(pwd)/data}
-CREDS_PATH=$(pwd)/credentials
+CREDS_PATH="$(pwd)/credentials"
 
-# execute the command `/bin/bash` (i.e. get a terminal inside the container)
-# mounting the data directory and credentials you're already using
-# container file (.sif) must already be built
+# Execute the command `/bin/bash` (i.e. get a terminal inside the container),
+# mounting the data directory and credentials you're already using.
+# Container file (.sif) must already be built
 apptainer exec \
-    --bind $DATA_PATH:/project/data \
-    --bind $CREDS_PATH:/project/credentials \
+    --bind "$DATA_PATH:/project/data" \
+    --bind "$CREDS_PATH:/project/credentials" \
     {{ cookiecutter.package_name }}.sif /bin/bash
 ```
 
@@ -68,7 +68,7 @@ This layout is designed to encourage a firm division between general utilities a
 The scripts should be fairly minimal;
 basically just feeding fixed arguments to functions and classes from your utilities.
 
-This encourages code re-usable and testable, and keeping your final product readable,
+This encourages code to be re-usable and testable, and keeps your final product readable,
 and makes it easier to export useful functions if you need them elsewhere.
 
 More recommendations can be found [here](https://gitlab.com/cardonazlaticlabs/data-policy/-/blob/master/GUIDELINES.md).
