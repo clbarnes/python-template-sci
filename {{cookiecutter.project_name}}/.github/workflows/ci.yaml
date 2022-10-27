@@ -37,4 +37,11 @@ jobs:
           pip install .
         name: Install package
       - run: pytest --verbose
+
+  container:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: eWaterCycle/setup-apptainer@v2
+      - run: make apptainer
 {% endraw %}
