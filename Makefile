@@ -11,5 +11,4 @@ test: package
 	&& make install-dev \
 	&& make lint \
 	&& make test \
-	&& make docs \
 	|| deactivate
