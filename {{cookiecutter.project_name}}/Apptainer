@@ -3,9 +3,9 @@ From: python:3.10.8-bullseye
 
 %setup
     mkdir -p \
-        $SINGULARITY_ROOTFS/project/.git \
-        $SINGULARITY_ROOTFS/project/credentials \
-        $SINGULARITY_ROOTFS/project/data
+        $APPTAINER_ROOTFS/project/.git \
+        $APPTAINER_ROOTFS/project/credentials \
+        $APPTAINER_ROOTFS/project/data
 
 %files
     ./src /project/src

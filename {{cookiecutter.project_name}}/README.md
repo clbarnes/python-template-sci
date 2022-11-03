@@ -36,8 +36,8 @@ or the path can be set using the `{{ cookiecutter.package_name.upper() }}_DATA` 
 
 ### Containerisation
 
-This project can be containerised comes with [apptainer](https://apptainer.org/docs/user/main/quick_start.html)
-(bundling it with a python environment and full OS),
+This project can be containerised with [apptainer](https://apptainer.org/docs/user/main/quick_start.html) (formerly called Singularity)
+(bundling it with a python environment and full OS) on linux,
 so that it can be run on any system with apptainer installed.
 
 Just run `make container` (requires sudo).
@@ -50,7 +50,7 @@ You can [bind mount](https://apptainer.org/docs/user/main/bind_paths_and_mounts.
 
 ```sh
 # Find the data path your environment is using, defaulting to the local ./data
-DATA_PATH=${{"{"}}{{ cookiecutter.package_name.upper() }}_DATA:-$(pwd)/data}
+DATA_PATH="${{"{"}}{{ cookiecutter.package_name.upper() }}_DATA:-$(pwd)/data}"
 CREDS_PATH="$(pwd)/credentials"
 
 # Execute the command `/bin/bash` (i.e. get a terminal inside the container),
@@ -83,7 +83,7 @@ to modules and functions to explain what they do,
 and in particular what type of data they take in and put out.
 Trying to remember or infer what a function needs and produces is one of the biggest wastes of time in working with scripts.
 
-Using [type hints](https://realpython.com/lessons/type-hinting/) will also allow automated tools to catch ceratin types of error.
+Using [type hints](https://realpython.com/lessons/type-hinting/) will also allow automated tools to catch certain types of error.
 
 ### Credentials
 
@@ -127,7 +127,6 @@ This repo uses [GitHub Actions](https://docs.github.com/en/actions) to lint and 
 
 ### Versioning
 
-This repo uses [`setuptools-scm`](https://pypi.org/project/setuptools-scm/) so your package version and git version is synchronised.
 Versioning is useful for ensuring that you or anyone else can reproduce your pipeline exactly as it was at some key moment;
 for example if you want to keep working on a repo after submitting a paper based on it but allow people to access the published version easily.
 
@@ -138,6 +137,10 @@ git tag --annotate v2.0 --message "Scripts as used in Myself et al. (2023)"
 ```
 
 When you `git push` your code up to a remote (e.g. GitHub), include the `--follow-tags` argument to push the tags as well.
+
+This repo uses [`setuptools-scm`](https://pypi.org/project/setuptools-scm/) so that your package version is determined by your git tag.
+You can find your package version at `{{ cookiecutter.package_name }}.__version__`.
+If you add a new version tag, you may need re-install the package (`pip install -e .`) for the new version to show up here.
 
 ### Re. Notebooks
 
